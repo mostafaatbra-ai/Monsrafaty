@@ -24,11 +24,20 @@
  ],
  "share_target": {
   "action": "./index.html",
-  "method": "GET",
+  "method": "POST",
+  "enctype": "multipart/form-data",
   "params": {
    "title": "title",
    "text": "text",
-   "url": "url"
+   "url": "url",
+   "files": [
+    {
+     "name": "media",
+     "accept": [
+      "image/*"
+     ]
+    }
+   ]
   }
  }
 }
