@@ -1,4 +1,4 @@
-const C="masrofati-v2";
+const C="masrofati-v3";
 self.addEventListener("install",e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(["./","./index.html","./manifest.json"])));self.skipWaiting()});
 self.addEventListener("activate",e=>{e.waitUntil(clients.claim())});
 self.addEventListener("fetch",e=>{
@@ -14,4 +14,4 @@ self.addEventListener("fetch",e=>{
    return Response.redirect(new URL("index.html?"+q.toString(),self.registration.scope).href,303);
   })());return}
  if(e.request.method!=="GET")return;
- e.respondWith(fetch(e.request).then(r=>{const c=r.clone();caches.open(C).then(x=>x.put(e.request,c)).catch(()=>{});return r}).catch(()=>caches.match(e.request,{ignoreSearch:true})))});
+ e.respondWith(fetch(e.request,u.origin===location.origin?{cache:"no-cache"}:undefined).then(r=>{const c=r.clone();caches.open(C).then(x=>x.put(e.request,c)).catch(()=>{});return r}).catch(()=>caches.match(e.request,{ignoreSearch:true})))});
